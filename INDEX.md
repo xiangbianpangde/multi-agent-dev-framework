@@ -38,10 +38,33 @@
 **安全**
 - [安全审计](engineering-knowledge-base/05-security/security-audit.md)
 
+**知识图谱**
+- [知识图谱设计](engineering-knowledge-base/07-knowledge-graph/design.md)
+
 **配置模板**
 - [Agent配置](engineering-knowledge-base/06-config-templates/agents.json)
 - [模型配置](engineering-knowledge-base/06-config-templates/models.json)
 - [项目结构](engineering-knowledge-base/06-config-templates/project-structure.md)
+
+## Agent角色
+
+**决策层**
+- [太子](agents/taizi/SOUL.md) - 需求分析官
+- [中书省](agents/zhongshu/SOUL.md) - 架构设计官
+
+**审核层**
+- [门下省](agents/menxia/SOUL.md) - 架构审核官
+
+**协调层**
+- [尚书省](agents/shangshu/SOUL.md) - 开发协调官
+
+**执行层（六部）**
+- [吏部](agents/libu/SOUL.md) - Agent创建官
+- [户部](agents/hubu/SOUL.md) - 数据设计官
+- [礼部](agents/libu_hr/SOUL.md) - 文档编写官
+- [兵部](agents/bingbu/SOUL.md) - 代码开发官
+- [刑部](agents/xingbu/SOUL.md) - 安全审计官
+- [工部](agents/gongbu/SOUL.md) - 部署运维官
 
 ## 工具
 
