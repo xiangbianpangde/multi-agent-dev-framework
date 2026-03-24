@@ -1,0 +1,176 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Agent Configuration",
+  "description": "多Agent项目开发的Agent配置模板",
+  "type": "object",
+  "properties": {
+    "version": {
+      "type": "string",
+      "description": "配置版本",
+      "default": "1.0.0"
+    },
+    "agents": {
+      "type": "object",
+      "description": "Agent定义",
+      "additionalProperties": {
+        "$ref": "#/definitions/Agent"
+      }
+    },
+    "permission_matrix": {
+      "$ref": "#/definitions/PermissionMatrix"
+    }
+  },
+  "definitions": {
+    "Agent": {
+      "type": "object",
+      "required": ["id", "name", "role", "department", "description"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Agent唯一标识符",
+          "pattern": "^[a-z][a-z0-9_]*$"
+        },
+        "name": {
+          "type": "string",
+          "description": "Agent显示名称"
+        },
+        "role": {
+          "type": "string",
+          "description": "Agent角色类型",
+          "enum": ["decision", "audit", "execution", "support"]
+        },
+        "department": {
+          "type": "string",
+          "description": "所属部门",
+          "enum": ["decision_layer", "audit_layer", "execution_layer", "support_layer"]
+        },
+        "description": {
+          "type": "string",
+          "description": "功能描述"
+        },
+        "model": {
+          "$ref": "#/definitions/ModelConfig"
+        },
+        "capabilities": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "能力列表"
+        },
+        "skills": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "技能列表"
+        },
+        "permissions": {
+          "$ref": "#/definitions/AgentPermissions"
+        },
+        "workspace": {
+          "type": "string",
+          "description": "工作目录路径"
+        },
+        "enabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "是否启用"
+        }
+      }
+    },
+    "ModelConfig": {
+      "type": "object",
+      "properties": {
+        "primary": {
+          "type": "string",
+          "description": "主模型"
+        },
+        "fallback": {
+          "type": "string",
+          "description": "备用模型"
+        },
+        "temperature": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 2,
+          "default": 0.7
+        },
+        "max_tokens": {
+          "type": "integer",
+          "minimum": 1,
+          "default": 4096
+        }
+      }
+    },
+    "AgentPermissions": {
+      "type": "object",
+      "properties": {
+        "can_send_to": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "可发送消息的Agent列表"
+        },
+        "can_receive_from": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "可接收消息的Agent列表"
+        },
+        "can_create_task": {
+          "type": "boolean",
+          "default": false
+        },
+        "can_approve": {
+          "type": "boolean",
+          "default": false
+        },
+        "can_terminate": {
+          "type": "boolean",
+          "default": false
+        }
+      }
+    },
+    "PermissionMatrix": {
+      "type": "object",
+      "properties": {
+        "send_message": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "create_task": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "approve_task": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "execute_task": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "terminate_task": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

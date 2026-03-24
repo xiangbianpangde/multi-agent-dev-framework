@@ -1,0 +1,146 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Model Configuration",
+  "description": "模型配置模板",
+  "type": "object",
+  "properties": {
+    "version": {
+      "type": "string",
+      "default": "1.0.0"
+    },
+    "providers": {
+      "type": "object",
+      "additionalProperties": {
+        "$ref": "#/definitions/Provider"
+      }
+    },
+    "models": {
+      "type": "object",
+      "additionalProperties": {
+        "$ref": "#/definitions/Model"
+      }
+    },
+    "recommendations": {
+      "$ref": "#/definitions/Recommendations"
+    }
+  },
+  "definitions": {
+    "Provider": {
+      "type": "object",
+      "required": ["name", "api_base"],
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "提供商名称"
+        },
+        "api_base": {
+          "type": "string",
+          "description": "API基础URL"
+        },
+        "api_key_env": {
+          "type": "string",
+          "description": "API密钥环境变量名"
+        },
+        "rate_limit": {
+          "type": "object",
+          "properties": {
+            "requests_per_minute": {
+              "type": "integer"
+            },
+            "tokens_per_minute": {
+              "type": "integer"
+            }
+          }
+        }
+      }
+    },
+    "Model": {
+      "type": "object",
+      "required": ["provider", "model_id"],
+      "properties": {
+        "provider": {
+          "type": "string",
+          "description": "所属提供商"
+        },
+        "model_id": {
+          "type": "string",
+          "description": "模型ID"
+        },
+        "context_window": {
+          "type": "integer",
+          "description": "上下文窗口大小"
+        },
+        "capabilities": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": ["chat", "completion", "embedding", "function_call", "vision"]
+          }
+        },
+        "pricing": {
+          "type": "object",
+          "properties": {
+            "input_per_1k": {
+              "type": "number",
+              "description": "输入每1k token价格(USD)"
+            },
+            "output_per_1k": {
+              "type": "number",
+              "description": "输出每1k token价格(USD)"
+            }
+          }
+        },
+        "default_params": {
+          "type": "object",
+          "properties": {
+            "temperature": {
+              "type": "number"
+            },
+            "max_tokens": {
+              "type": "integer"
+            },
+            "top_p": {
+              "type": "number"
+            }
+          }
+        }
+      }
+    },
+    "Recommendations": {
+      "type": "object",
+      "properties": {
+        "by_task": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object",
+            "properties": {
+              "primary": {
+                "type": "string"
+              },
+              "fallback": {
+                "type": "string"
+              },
+              "reason": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "by_agent_role": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object",
+            "properties": {
+              "primary": {
+                "type": "string"
+              },
+              "fallback": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
