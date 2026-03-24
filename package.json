@@ -1,0 +1,29 @@
+{
+  "name": "multi-agent-dev-framework",
+  "version": "1.0.0",
+  "description": "多Agent项目自动开发框架 - 三省六部制架构",
+  "main": "tools/cli.py",
+  "scripts": {
+    "test": "pytest tests/",
+    "lint": "flake8 tools/ examples/",
+    "format": "black tools/ examples/"
+  },
+  "keywords": [
+    "multi-agent",
+    "ai",
+    "framework",
+    "automation",
+    "development",
+    "three-provinces-six-ministries"
+  ],
+  "author": "xiangbianpangde",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/xiangbianpangde/multi-agent-dev-framework.git"
+  },
+  "bugs": {
+    "url": "https://github.com/xiangbianpangde/multi-agent-dev-framework/issues"
+  },
+  "homepage": "https://github.com/xiangbianpangde/multi-agent-dev-framework"
+}
