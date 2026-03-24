@@ -29,10 +29,12 @@ engineering-knowledge-base/
 │   └── memory-system.md        # 记忆系统设计
 ├── 05-security/                # 安全设计
 │   └── security-audit.md       # 安全审计规范
-└── 06-config-templates/        # 配置模板
-    ├── agents.json             # Agent配置模板
-    ├── models.json             # 模型配置模板
-    └── project-structure.md    # 项目结构模板
+├── 06-config-templates/        # 配置模板
+│   ├── agents.json             # Agent配置模板
+│   ├── models.json             # 模型配置模板
+│   └── project-structure.md    # 项目结构模板
+└── 07-knowledge-graph/         # 知识图谱
+    └── design.md               # 知识图谱设计文档
 ```
 
 ---
